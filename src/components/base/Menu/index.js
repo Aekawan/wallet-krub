@@ -31,17 +31,6 @@ const TruePoint = styled.div`
   width: 100%;
 `
 
-const Title = styled.h2`
-  cursor: pointer;
-  &.title {
-    margin-bottom: 10px;
-  }
-  transition: .5s;
-  &:hover {
-    color: #eb3349;
-  }
-`
-
 const Line = styled.div`
   height: 5px;
   width: 500px;
@@ -52,12 +41,35 @@ const ContentContainer = styled.div`
   display: flex;
 `
 
-const Menu = ({ title = '', items = [] }) => (
+const TitleContiane = styled.div`
+  display: flex;
+`
+
+const Title1 = styled.h2`
+  cursor: pointer;
+  &.title {
+    margin-bottom: 10px;
+  }
+  color: #eb3349;
+`
+
+const Title2 = styled.h2`
+  cursor: pointer;
+  &.title {
+    margin: 0 0 10px 10px; 
+  }
+  color: #212121;
+`
+
+const Menu = ({ title = ['',''], items = [] }) => (
   <ContentContainer className="container">
     <Container className="columns">
       <Column className="column is-full-mobile">
         <TruePoint>
-          <Title className="title is-2">{title}</Title>
+          <TitleContiane>
+             <Title1 className="title is-2">{title[0]}</Title1>
+             <Title2 className="title is-2">{title[1]}</Title2>
+          </TitleContiane>
           <Line/>
           <MenuList items={items} />
         </TruePoint>

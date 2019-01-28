@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import * as R from 'ramda'
 
 const Container = styled.div`
   display: flex;
@@ -22,26 +21,57 @@ const List = styled.ul`
   font-size: 16px;
 `
 
-const Item = styled.li`
+const ItemComponent = styled.li`
   cursor: pointer;
   display: inline-block;
   margin-right: 30px;
-  &:hover {
+  &.active {
     color: #eb3349;
     border-bottom: 2px solid #eb3349;
   }
+  &:hover {
+    color: #eb3349;
+  }
 `
 
-const Menu = ({ items = [] }) => (
-  <Container>
-    <List>
-      {
-        R.map(item => (
-           <Item>{item}</Item>
-        ))(items)
-      }
-    </List>
-  </Container>
+const Item = ({ className, text = '', onClick }) => (
+  <ItemComponent className={className} onClick={onClick}>
+    {text}
+  </ItemComponent>
 )
+
+class Menu extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      active: 0
+    }
+  }
+
+  onItemClick = (id) => {
+    this.setState({ active: id })
+  }
+  
+  render() {
+    const { active } = this.state
+    const { items } = this.props
+    return (
+      <Container>
+        <List>
+          {
+            items.map((item, id) => (
+              <Item 
+                className={active === id ? 'active' : ''} 
+                onClick={() => this.onItemClick(id)}
+                text={item}
+              />
+            ))
+          }
+        </List>
+      </Container>
+    )
+  }
+}
+
 
 export default Menu

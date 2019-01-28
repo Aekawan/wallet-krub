@@ -46,19 +46,53 @@ const NavbarStart = styled.div`
 `
 
 const NavberEnd = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 30px;
   > a {
-    background: #0984e3;
-    color: #FFFFFF;
+    position: relative;
+    /*background: #0984e3;
     border: 2px solid #FFFFFF;
-    box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.3);
+    box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.3);*/
+    color: #FFFFFF;
+    margin: 20px 0;
+    border-right: 1px solid #FFFF;
   }
   > a:hover {
-    background: #0984e3;
+    /*background: #0984e3;*/
+    background: transparent;
     color: #FFFFFF;
+  }
+  > a:last-child {
+    border-right: 0px;
+  }
+  > a > i {
+    margin-right: 5px;
+    font-size: 20px;
+    color: #FFFF;
+    &.basket {
+     font-size: 30px;
+    }
+  }
+
+  > a.with-budget {
+    position: relative;
+    > div.budget {
+      position: absolute;
+      font-size: 8px;
+      display: flex;
+      right: 0;
+      bottom: 0;
+      margin: 0 15px 5px 0;
+      justify-content: center;
+      align-items: center;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #44bd32;
+    }
   }
 `
 
@@ -84,7 +118,14 @@ const Header = ({ title = ' Wallet Krub' }) => (
       </a>
     </NavbarStart>
     <NavberEnd className="navbar-end">
-      <a className="button is-rounded">เข้าสู่ระบบ</a>
+      <a className="navbar-item">
+       <i className="fas fa-user"></i>
+        เข้าสู่ระบบ/ลงทะเบียน
+      </a>
+      <a className="navbar-item with-budget">
+        <i className="fas fa-shopping-basket basket"></i>
+        <div className="budget">10</div>
+      </a>
     </NavberEnd>
   </NavbarMenu>
  </Navbar>

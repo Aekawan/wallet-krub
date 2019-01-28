@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 
 export const H1 = ({ children }) => (
   <h1 className="title is-1">{children}</h1>
